@@ -8,32 +8,36 @@ type State = {
   items: Array<{
     value: string,
     completed: boolean
-  }>
+  }>,
+  isCompletedHidden: boolean
 };
 
 export default (
-  state: State = { items: [] },
+  state: State = { items: [], isCompletedHidden: false },
   action: { type: $ActionType }
 ): State => {
   switch (action.type) {
     case ActionType.ADD_TODO_ITEM: {
+      const { value }: { value: string } = (action: Object);
       return {
-        items: [...state.items, { value: action.value, completed: false }]
+        ...state,
+        items: [...state.items, { value, completed: false }]
       };
     }
     case ActionType.REMOVE_TODO_ITEM: {
+      const { index }: { index: number } = (action: Object);
       const items = [...state.items];
-      items.splice(action.index, 1);
-      return { items };
+      items.splice(index, 1);
+      return { ...state, items };
     }
     case ActionType.TOGGLE_TODO_ITEM_COMPLETE: {
+      const { index }: { index: number } = (action: Object);
       const items = state.items.map(item => ({ ...item }));
-      items[action.index].completed = !items[action.index].completed;
-      return { items };
+      items[index].completed = !items[index].completed;
+      return { ...state, items };
     }
-    case ActionType.REMOVE_COMPLETED_TODO_ITEMS: {
-      const items = state.items.filter(item => !item.completed);
-      return { items };
+    case ActionType.TOGGLE_HIDE_COMPLETED_ITEMS: {
+      return { ...state, isCompletedHidden: !state.isCompletedHidden };
     }
     default:
       return state;

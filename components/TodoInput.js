@@ -9,8 +9,8 @@ import { addTodoItem } from "../redux/actions";
 type Props = { addTodoItem: string => void };
 type State = { value: string };
 
-class TodoInput extends Component<Props> {
-  state = { value: "" };
+class TodoInput extends Component<Props, State> {
+  state: State = { value: "" };
 
   handleChangeValue = (value: string) => {
     this.setState({ value });

@@ -23,8 +23,8 @@ export function toggleTodoItem(index: number) {
   };
 }
 
-export function removeCompletedItems() {
+export function toggleHideCompletedItems() {
   return {
-    type: ActionType.REMOVE_COMPLETED_TODO_ITEMS
+    type: ActionType.TOGGLE_HIDE_COMPLETED_ITEMS
   };
 }

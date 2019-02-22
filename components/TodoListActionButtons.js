@@ -5,34 +5,35 @@ import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
 import PushNotification from "react-native-push-notification";
 import { connect } from "react-redux";
-import { removeCompletedItems } from "../redux/actions";
+import { toggleHideCompletedItems } from "../redux/actions";
 
-function RemoveCompletedItemsButton(props: {
+function HideCompletedItemsButton(props: {
   removeItems: () => void,
-  hasCompletedItems: boolean
+  isCompletedHidden: boolean,
+  disabled: boolean
 }) {
   return (
     <Button
       type="clear"
       onPress={props.removeItems}
-      title="Remove Completed"
+      title={props.isCompletedHidden ? "Show Completed" : "Hide Completed"}
       titleStyle={styles.removeText}
-      disabled={!props.hasCompletedItems}
-      buttonStyle={styles.removeButton}
+      disabled={props.disabled}
     />
   );
 }
 
-const RemoveButton = connect(
+const HideButton = connect(
   state => ({
-    hasCompletedItems: state.todo.items.some(item => item.completed)
+    isCompletedHidden: state.todo.isCompletedHidden,
+    disabled: !state.todo.items.length
   }),
   dispatch => ({
-    removeItems: () => dispatch(removeCompletedItems())
+    removeItems: () => dispatch(toggleHideCompletedItems())
   })
-)(RemoveCompletedItemsButton);
+)(HideCompletedItemsButton);
 
-function SendLocalNotificationButton(props: { numIncompleteItems: boolean }) {
+function SendLocalNotificationButton(props: { numIncompleteItems: number }) {
   return (
     <Button
       onPress={() =>
@@ -46,7 +47,6 @@ function SendLocalNotificationButton(props: { numIncompleteItems: boolean }) {
         })
       }
       title="Notify"
-      buttonStyle={styles.notificationButton}
       disabled={!props.numIncompleteItems}
     />
   );
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 
 export default () => (
   <View>
-    <RemoveButton />
+    <HideButton />
     <NotificationButton />
   </View>
 );

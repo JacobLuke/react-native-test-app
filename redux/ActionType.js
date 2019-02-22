@@ -6,7 +6,7 @@ const ActionType = Object.freeze({
   ADD_TODO_ITEM: null,
   REMOVE_TODO_ITEM: null,
   TOGGLE_TODO_ITEM_COMPLETE: null,
-  REMOVE_COMPLETED_TODO_ITEMS: null
+  TOGGLE_HIDE_COMPLETED_ITEMS: null
 });
 
 export default (keymirror(ActionType): {

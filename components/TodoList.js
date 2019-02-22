@@ -11,35 +11,42 @@ const IndexKey = (item: any, index: number) => index.toString();
 type Props = {
   items: Array<{ value: string, completed: boolean }>,
   removeItem: (index: number) => void,
-  toggleCompleted: (index: number) => void
+  toggleCompleted: (index: number) => void,
+  show?: "completed" | "incomplete"
 };
 
 class TodoList extends Component<Props> {
   renderItem = (item: {
-    item: { value: string, completed: boolean },
-    index: number
+    item: { value: string, completed: boolean, index: number }
   }) => {
     return (
       <ListItem
         title={item.item.value}
         checkBox={{
           checked: item.item.completed,
-          onPress: () => this.props.toggleCompleted(item.index)
+          onPress: () => this.props.toggleCompleted(item.item.index)
         }}
         rightIcon={{
           name: "delete-forever",
           color: "#ff0000",
-          onPress: () => this.props.removeItem(item.index)
+          onPress: () => this.props.removeItem(item.item.index)
         }}
       />
     );
   };
   render() {
+    const { items, show } = this.props;
     return (
       <ScrollView>
         <FlatList
           keyExtractor={IndexKey}
-          data={this.props.items}
+          data={items
+            .map((item, index) => ({ ...item, index }))
+            .filter(
+              item =>
+                (item.completed && show !== "incomplete") ||
+                (!item.completed && show !== "completed")
+            )}
           renderItem={this.renderItem}
         />
       </ScrollView>
@@ -47,12 +54,18 @@ class TodoList extends Component<Props> {
   }
 }
 
-export default connect(
-  state => ({
-    items: state.todo.items
-  }),
+export default (connect(
+  (state, { onlyCompleted }) => {
+    let show;
+    if (onlyCompleted) {
+      show = "completed";
+    } else if (state.todo.isCompletedHidden) {
+      show = "incomplete";
+    }
+    return { items: state.todo.items, show };
+  },
   dispatch => ({
     removeItem: (index: number) => dispatch(removeTodoItem(index)),
     toggleCompleted: (index: number) => dispatch(toggleTodoItem(index))
   })
-)(TodoList);
+)(TodoList): React$ComponentType<{ onlyCompleted?: boolean }>);
