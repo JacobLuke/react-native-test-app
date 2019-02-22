@@ -1,3 +1,4 @@
+
 [ignore]
 ; We fork some components by platform
 .*/*[.]android.js
@@ -12,6 +13,7 @@
 ; For RN Apps installed via npm, "Libraries" folder is inside
 ; "node_modules/react-native" but in the source repo it is in the root
 .*/Libraries/react-native/React.js
+; .*/react-native/Libraries/.*
 
 ; Ignore polyfills
 .*/Libraries/polyfills/.*
@@ -66,5 +68,6 @@ suppress_comment=\\(.\\|\n\\)*\\$FlowIssue\\((\\(<VERSION>\\)? *\\(site=[a-z,_]*
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixedInNextDeploy
 suppress_comment=\\(.\\|\n\\)*\\$FlowExpectedError
 
+
 [version]
-^0.91.0
+^0.86.0
