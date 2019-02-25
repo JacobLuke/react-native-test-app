@@ -1,10 +1,10 @@
 // @flow
 
 import React, { Component } from "react";
-import { Alert, FlatList, ScrollView } from "react-native";
+import { FlatList, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import { ListItem } from "react-native-elements";
-import { removeTodoItem, toggleTodoItem } from "../redux/actions";
+import { removeTodoItem, toggleTodoItem } from "../redux/actions/todo";
 
 const IndexKey = (item: any, index: number) => index.toString();
 

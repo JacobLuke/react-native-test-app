@@ -5,7 +5,7 @@ import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
 import PushNotification from "react-native-push-notification";
 import { connect } from "react-redux";
-import { toggleHideCompletedItems } from "../redux/actions";
+import { toggleHideCompletedItems } from "../redux/actions/todo";
 
 function HideCompletedItemsButton(props: {
   removeItems: () => void,

@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { View } from "react-native";
 import { Input } from "react-native-elements";
 import { connect } from "react-redux";
-import { addTodoItem } from "../redux/actions";
+import { addTodoItem } from "../redux/actions/todo";
 
 type Props = { addTodoItem: string => void };
 type State = { value: string };

@@ -14,7 +14,7 @@ type State = {
 
 export default (
   state: State = { items: [], isCompletedHidden: false },
-  action: { type: $ActionType }
+  action: { type: $ActionType } & Object
 ): State => {
   switch (action.type) {
     case ActionType.ADD_TODO_ITEM: {
