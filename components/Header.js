@@ -2,7 +2,7 @@
 
 import React from "react";
 import { connect } from "react-redux";
-import { Alert, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { Header } from "react-native-elements";
 
 type Props = {
