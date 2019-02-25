@@ -1,21 +1,17 @@
 // @flow
 
-import { createStackNavigator } from "react-navigation";
+import { createDrawerNavigator } from "react-navigation";
 import {
   createReduxContainer,
   createNavigationReducer,
   createReactNavigationReduxMiddleware
 } from "react-navigation-redux-helpers";
 import { connect } from "react-redux";
-import Completed from "./containers/Completed";
 import Home from "./containers/Home";
 
-export const AppNavigator = createStackNavigator({
+export const AppNavigator = createDrawerNavigator({
   Home: {
     screen: Home
-  },
-  Completed: {
-    screen: Completed
   }
 });
 export const middleware = createReactNavigationReduxMiddleware(
