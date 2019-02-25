@@ -1,6 +1,7 @@
 // @flow
 
 import React from "react";
+import { connect } from "react-redux";
 import { StyleSheet } from "react-native";
 import { Header } from "react-native-elements";
 
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default (props: Props) => (
+export default connect(state => state.nav)((props: Props) => (
   <Header
     leftComponent={{
       icon: "menu",
@@ -27,4 +28,4 @@ export default (props: Props) => (
     centerComponent={{ text: props.title, style: styles.header }}
     rightComponent={props.rightComponent}
   />
-);
+));

@@ -17,7 +17,6 @@ export default createStackNavigator({
             onPress: () => navigation.navigate("Completed")
           }}
           title="Todo App"
-          navigation={navigation}
         />
       )
     })
