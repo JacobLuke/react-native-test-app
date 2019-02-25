@@ -1,7 +1,6 @@
 // @flow
 import React, { Fragment } from "react";
 import { View, StyleSheet, Text } from "react-native";
-import Header from "./Header";
 import TodoInput from "../../components/TodoInput";
 import TodoList from "../../components/TodoList";
 import TodoListActionButtons from "../../components/TodoListActionButtons";
