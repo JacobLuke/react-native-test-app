@@ -1,5 +1,6 @@
 // @flow
 import { applyMiddleware, createStore, combineReducers } from "redux";
+import thunk from "redux-thunk";
 import todoReducer from "./reducers";
 import {
   reducer as navReducer,
@@ -8,5 +9,5 @@ import {
 
 export default createStore(
   combineReducers({ todo: todoReducer, nav: navReducer }),
-  applyMiddleware(navMiddleware)
+  applyMiddleware(thunk, navMiddleware)
 );
