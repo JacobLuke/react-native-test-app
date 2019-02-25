@@ -2,13 +2,13 @@
 
 import React from "react";
 import { connect } from "react-redux";
-import { StyleSheet } from "react-native";
+import { Alert, StyleSheet } from "react-native";
 import { Header } from "react-native-elements";
 
 type Props = {
   rightComponent?: Object,
   title: string,
-  navigation: Object
+  navigation: { toggleDrawer: () => void }
 };
 
 const styles = StyleSheet.create({
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(state => state.nav)((props: Props) => (
+export default (props: Props) => (
   <Header
     leftComponent={{
       icon: "menu",
@@ -28,4 +28,4 @@ export default connect(state => state.nav)((props: Props) => (
     centerComponent={{ text: props.title, style: styles.header }}
     rightComponent={props.rightComponent}
   />
-));
+);

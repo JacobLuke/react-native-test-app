@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { createStackNavigator } from "react-navigation";
-import Header from "./Header";
+import Header from "../../components/Header";
 import MainScreen from "./Main";
 import CompletedScreen from "./Completed";
 
@@ -17,6 +17,7 @@ export default createStackNavigator({
             onPress: () => navigation.navigate("Completed")
           }}
           title="Todo App"
+          navigation={navigation}
         />
       )
     })
